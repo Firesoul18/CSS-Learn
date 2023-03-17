@@ -7,6 +7,7 @@
         height: 40px;
         border:none;
         cursor: pointer;
+        transition: hover 0.15s;
     }
 
     .amazon{
@@ -17,7 +18,8 @@
         font-weight:600;
         border-radius: 30px;
         margin-right: 20px;
-        cursor: pointer;
+        cursor:not-allowed;
+        transition: hover 0.15s, background 0.15s;
     }
 
     .github{
@@ -30,6 +32,7 @@
         color:white;
         cursor: pointer;
         font-weight: 600;
+        transition: box-shadow 0.15s;
     }
 
     .bootstrap1{
@@ -44,9 +47,11 @@
         margin-right: 7px;
         cursor: pointer;
         border-color: rgb(108,117,125);
+        transition: background-color 0.15s, color 0.15s;
     }
 
     .bootstrap2{
+        transition: background-color 0.15s, color 0.15s;
         width: 110px;
         height: 40px;
         background-color: white;
@@ -57,6 +62,7 @@
     }
 
     .linkedin1{
+        transition: background-color 0.15s, border-width 0.15s;
         background-color: rgb(10,102,194);
         width: 220px;
         height: 35px;
@@ -67,6 +73,7 @@
         cursor: pointer;
     }
     .linkedin2{
+        transition: background-color 0.15s, border-width 0.15s;
         background-color: white;
         width:90px;
         height:35px;
@@ -77,6 +84,42 @@
         border-width: 1px;
         cursor:pointer;
         color:rgb(10,102,194);
+    }
+
+
+    .uber:hover{
+        opacity:0.8;
+    }
+    .uber:active{
+        opacity:0.5;
+    }
+
+    .amazon:hover{
+        background-color: rgb(255, 200, 26) ;
+    }
+    .amazon:active{
+        opacity: 0.6;
+    }
+
+    .github:hover{
+        box-shadow: 0px 5px 6px rgba(0, 0, 0,0.1);
+    }
+
+    .bootstrap1:hover{
+        background-color: rgb(121,65,179);
+    }
+    .bootstrap2:hover{
+        background-color: grey;
+        color: white;
+    }
+
+    .linkedin1:hover{
+        background-color: rgb(10,90,194);
+    }
+
+    .linkedin2:hover{
+        background-color: rgba(10, 102, 194, 0.17);
+        border-width: 1px;
     }
 
 </style>
