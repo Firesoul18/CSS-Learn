@@ -2,29 +2,29 @@
     .uber{
         background-color: black;
         color:white;
-        width: 120px;
-        margin-right:20px;
+        margin-right: 20px;
+        padding: 10px 20px;
         height: 40px;
         border:none;
         cursor: pointer;
         transition: hover 0.15s;
+        vertical-align: middle;
     }
 
     .amazon{
         background-color: rgb(255, 216, 20);
-        width:160px;
-        height:35px;
+        padding: 10px 30px;
         border:none;
         font-weight:600;
         border-radius: 30px;
         margin-right: 20px;
         cursor:not-allowed;
         transition: hover 0.15s, background 0.15s;
+        vertical-align:middle;
     }
 
     .github{
-        width:85px;
-        height:35px;
+        padding:9px 17px;
         margin-right:20px;
         border:none;
         border-radius: 4px;
@@ -33,14 +33,14 @@
         cursor: pointer;
         font-weight: 600;
         transition: box-shadow 0.15s;
+        vertical-align: middle;
     }
 
     .bootstrap1{
-        width:110px;
-        height:40px;
+        padding:12px 22px;
         margin-top:20px;
         margin-bottom: 20px;
-        background-color:rgb(121,82,179);
+        background-color:rgb(121,80,179);
         color:white;
         border-width: 1px;
         border-radius:3px;
@@ -48,35 +48,35 @@
         cursor: pointer;
         border-color: rgb(108,117,125);
         transition: background-color 0.15s, color 0.15s;
+        vertical-align: middle;
     }
 
     .bootstrap2{
         transition: background-color 0.15s, color 0.15s;
-        width: 110px;
-        height: 40px;
+        padding: 12px 22px;
         background-color: white;
         border-radius: 3px;
         border-width: 1px;
         cursor: pointer;
         border-color: rgb(108,117,125);
+        vertical-align: middle;
     }
 
     .linkedin1{
         transition: background-color 0.15s, border-width 0.15s;
         background-color: rgb(10,102,194);
-        width: 220px;
-        height: 35px;
+        padding:10px 22px;
         border:none;
         border-radius: 20px;
         font-weight: 600;
         color:white;
         cursor: pointer;
+        vertical-align: middle;
     }
     .linkedin2{
         transition: background-color 0.15s, border-width 0.15s;
         background-color: white;
-        width:90px;
-        height:35px;
+        padding:10px 22px;
         border-color: rgb(10,102,194);
         border-radius:20px;
         font-weight: 600;
@@ -84,6 +84,7 @@
         border-width: 1px;
         cursor:pointer;
         color:rgb(10,102,194);
+        vertical-align: middle;
     }
 
 
@@ -122,6 +123,74 @@
         border-width: 1px;
     }
 
+    .one{
+        margin:20 5px;
+        padding: 12px 22px;
+        transition: padding 0.15s, background 0.15s, box-shadow 0.15s, color 0.15s;
+        background-color: rgb(242, 168, 7);
+        border-width: 1px;
+        border-color:rgb(248, 235, 182);
+        color:white;
+        border-radius: 9px;
+        border-style: solid;
+        cursor: pointer;
+    }
+
+    .one:hover{
+        color:rgb(72, 72, 72);
+        padding-left:30px;
+        padding-right: 30px;
+        background-color: rgb(241, 187, 72);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 15px 15px rgba(0, 0, 0,0.4);
+    }
+
+    .two{
+        margin:20 5px;
+        padding: 12px 22px;
+        transition: padding 0.15s, background 0.15s, box-shadow 0.15s, color 0.15s;
+        background-color: rgb(242, 168, 7);
+        border-width: 1px;
+        border-color:rgb(248, 235, 182);
+        color:white;
+        border-radius: 9px;
+        border-style: solid;
+        cursor: pointer;
+    }
+
+    .two:hover{
+        color:rgb(72, 72, 72);
+        padding:24px 44px;
+        background-color: rgb(241, 187, 72);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 15px 15px rgba(0, 0, 0,0.4);
+    }
+
+    .three{
+        margin:20px 5px;
+        padding: 12px 22px;
+        transition: padding 0.15s, background 0.15s, box-shadow 0.15s, color 0.15s;
+        background-color: rgb(242, 168, 7);
+        border-width: 1px;
+        border-color:rgb(248, 235, 182);
+        color:white;
+        border-radius: 9px;
+        border-style: solid;
+        cursor: pointer;
+        vertical-align: top;
+    }
+
+    .three:hover{
+        color:rgb(72, 72, 72);
+        background-color: rgb(241, 187, 72);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 5px 3px rgba(0, 0, 0,0.3);
+    }
+
+    .three:active{
+        box-shadow: none;
+        margin: 21px 6px;
+    }
 </style>
 
 <button class="uber">
@@ -155,5 +224,11 @@
 <button class="linkedin2">
     Save
 </button>
+</div>
+
+<div>
+    <button class="one">One</button>
+    <button class="two">Two</button>
+    <button class="three">Three</button>
 </div>
 </body>
