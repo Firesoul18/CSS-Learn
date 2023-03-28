@@ -1,0 +1,48 @@
+.flex1{
+    display: flex;
+    width:400px;
+    flex-direction: column;
+    border: ridge;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.flex2{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.flex3{
+    border-radius: 5px;
+    border: solid;
+    border-width: 1px;
+    border-color: gray;
+    margin-left: 50px;
+    display: flex;
+}
+.flex3::before{
+    border-radius: 5px 0px 0px 5px;
+    content: '';
+    width:100px;
+    height:60px;
+    background-color: gray;
+    display: inline;
+    align-self: center;
+    margin-right:5px;
+}
+.image{
+    margin-right: 15px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 80px;
+}
+
+.flex3 p{
+    margin:0;
+}
+
+.after-image{
+    display: flex;
+    flex-direction: column;
+}
