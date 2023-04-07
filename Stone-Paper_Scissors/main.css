@@ -99,7 +99,13 @@ body * {
     position: relative;
     background: linear-gradient(violet, blue, green, yellow, red, rgb(255, 124, 255));
     animation: spin 4s linear 0s infinite normal forwards;
+    outline: none;
+    /* user-select:none; */
+    -webkit-tap-highlight-color: transparent;
+}
 
+.option:focus,.option:active,.option:visited{
+    outline: none;
 }
 
 .option::before {
