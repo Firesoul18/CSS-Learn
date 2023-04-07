@@ -1,0 +1,30 @@
+button{
+    color: white;
+    background-color: rgb(180, 67, 67);
+    border:none;
+    padding: 1em 2em;
+    position: relative;
+}
+
+button::before{
+    content: "";
+    background-color: #fff;
+    padding: 6px;
+    top:0;
+    left:-6px;
+    position: absolute;
+    transform: skew(-45deg);
+}
+
+button::after{
+    content: "";
+    background-color: #fff;
+    padding: 6px;
+    bottom: 0;
+    right:-6px;
+    position: absolute;
+    transform: skew(-45deg);
+}
+button:hover{
+    filter: hue-rotate(300deg);
+}
