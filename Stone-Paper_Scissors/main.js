@@ -95,7 +95,7 @@ function check(user, comp) {
 }
 
 function handle(str) {
-    navigator.vibrate("100ms");
+    navigator.vibrate(400);
     let x = Math.random();
     check(str, x < 0.33 ? "rock" : (x < 0.66 ? "paper" : "scissors"))
 }
