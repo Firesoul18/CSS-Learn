@@ -1,3 +1,7 @@
+body *{
+    -webkit-tap-highlight-color: transparent;
+}
+
 p{
     margin:0;
     margin-bottom: 2%;;
@@ -33,6 +37,7 @@ p{
     gap: 2em;
     flex-wrap: wrap;
     justify-content: space-around;
+    transform: translateZ(110px);
 }
 
 .bottom {
@@ -100,6 +105,7 @@ body {
     position: absolute;
     inset: 0;
     width: 100%;
+    fill: none;
     height: 100%;
     border-radius: 50%;
     filter: blur(20px);
@@ -107,9 +113,13 @@ body {
     animation: spin 4s linear 0s infinite normal forwards;
 }
 
+/* .option:hover{
+    transform: rotate(360deg);
+} */
 
 .option::after {
     content: "";
+    /* backface-visibility: hidden; */
     position: absolute;
     text-align: center;
     top: 4%;
@@ -122,6 +132,14 @@ body {
     align-items: center;
     background-color: var(--black);
     color: var(--white);
+}
+
+.option:hover > .option::after{
+    transform: rotateY(90deg);
+}
+
+.option:hover > .option::before{
+    transform: rotateY(90deg);
 }
 
 .paper::after {
@@ -137,36 +155,8 @@ body {
 }
 
 @keyframes spin {
-    30% {
-        background-position: 30px 30px;
-    }
-
-    40% {
-        background-position: 40px 40px;
-    }
-
-    50% {
-        background-position: 50px 50px;
-    }
-
-    60% {
-        background-position: 60px 60px;
-    }
-
-    70% {
-        background-position: 70px 70px;
-    }
-
-    80% {
-        background-position: 80px 80px;
-    }
-
-    90% {
-        background-position: 90px 90px;
-    }
-
-    100% {
-        background-position: 100px 100px;
+    to{
+        transform: rotate(360deg);
     }
 }
 
@@ -242,7 +232,7 @@ button{
 
 @keyframes s {
     0%{
-        transform: translateY(-50vh);
+        transform: translateY(-200%);
     }
     
     100%{
@@ -256,7 +246,7 @@ button{
     }
     
     100%{
-        transform: translateY(-50vh);
+        transform: translateY(-200%);
     }
 }
 
@@ -288,6 +278,7 @@ button{
     border-radius: 2px;
     width: 100%;
     border-color: var(--white);
+    /* transform-origin: 0% 0%; */
     transition: all 1s;
 }
 
@@ -295,28 +286,54 @@ button{
     top:-8px;
     left:-2px;
     transition: all 1s;
+    /* transform-origin: center; */
 }
 
 .nav-button::after{
     bottom:-8px;
     left:-2px;
+    /* transform-origin: center; */
     transition: all 1s;
 }
 
+.nav-button[data-active="true"]{
+    background-color: inherit;
+    /* width:0; */
+    height: 0;
+    border: none;
+}
+.nav-button[data-active="true"]::before{
+    top:0;
+    left:0;
+    transform: rotate(45deg);
+}
+.nav-button[data-active="true"]::after{
+    transform: rotate(-45deg);
+    top:0;
+    left:0;
+    bottom: auto;
+}
+
+
 .menu{
-    top:30%;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    --fullwidth:0;
+    --fullheight:0;
+    bottom:0;
     left: 10%;
     width:80%;
     background:var(--white);
     transition: all 1s;
     opacity: 0.8;
     color:var(--black);
-    height: 100%;
+    height: 60%;
     overflow: hidden;
+    /* transform:translateY(-200%); */
     z-index: 200;
     position:absolute;
     display: flex;
-    animation: popup 1s ease 0s 1 normal forwards;
+    animation: popup 1s ease-in 0s 1 normal forwards;
     flex-direction: column;
 }
 
@@ -342,19 +359,10 @@ button{
     color:var(--white);
 }
 
-.nav-button[data-active="true"]{
-    background-color: inherit;
-    border: none;
-}
-.nav-button[data-active="true"]::before{
-    transform: rotate(45deg) translate(calc(120% - (var(--vw-width))));
-}
-.nav-button[data-active="true"]::after{
-    transform: rotate(-45deg) translate(calc(120% - (var(--vw-width))));
-}
-
-
 .menu[data-menu-active="true"]{
+    animation: popdown 1s ease 0s 1 normal forwards;
+}
+.body-on-menu[data-menu-active="true"]{
     animation: popdown 1s ease 0s 1 normal forwards;
 }
 
@@ -380,7 +388,7 @@ button{
     width:100vw;
     height: 100vh;
     transform-style: preserve-3d;
-    animation: rot 6s ease 1s 1 normal forwards;
+    animation: rot 5s ease 1s 1 normal forwards;
 }
 
 .game{
@@ -398,8 +406,8 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:black;
-    backface-visibility: hidden;
+    background-color:var(--black);
+    /* backface-visibility: hidden; */
     position: absolute;
     top:0;
     left:0;
@@ -412,30 +420,31 @@ button{
     font-size: 8vw;
     position: relative;
     padding: 19vh 2vw;
+    /* transition: transform 0.2s; */
     transform: translateZ(140px);
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
 }
 
 .loading-title::before{
     content: "";
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     position: absolute;
     inset: 0;
     border:solid;
     transform: translateZ(-50px);
-    border-color:white;
+    border-color:var(--white)
 }
 
 .loading-title>span:nth-child(1){
-    color:white;
+    color:var(--white)
 }
 
 .loading-screen span:nth-child(2){
-    color:white;
+    color:var(--white)
 }
 
 .loading-screen span:nth-child(3){
-    color:white;
+    color:var(--white)
 }
 
 @keyframes rot {
@@ -443,3 +452,15 @@ button{
         transform: rotateY(180deg);
     }
 }
+
+.body-on-menu{
+    position:absolute;
+    content: "";
+    inset:0;
+    z-index:100;
+    overflow: hidden;
+    padding:var(--fullheight) var(--fullwidth);
+    /* background-color: aqua; */
+    animation: popup 1s ease 0s 1 normal forwards;
+}
+
