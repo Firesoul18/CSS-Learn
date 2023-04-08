@@ -177,9 +177,10 @@ nav.addEventListener('click', () => {
 
 outbody.addEventListener('click', (e) => {
     let v = document.getElementsByClassName("menu")[0];
-    if (document.querySelector(".nav-button").getAttribute("data-active") == "true" && (e.clientY<v.offsetTop||e.clientX < v.offsetLeft||e.clientX>(v.offsetLeft+v.offsetWidth)||e.clientY>(v.offsetTop+v.offsetHeight))) {
+    if (document.querySelector(".nav-button").getAttribute("data-active") == "true" && (e.pageY<v.offsetTop||e.pageX< v.offsetLeft||e.pageX>(v.offsetLeft+v.offsetWidth)||e.pageY>(v.offsetTop+v.offsetHeight))) {
 
-        console.log(e.clientY+" "+(v.offsetHeight+v.offsetTop));
+        console.log(document.getElementsByClassName("menu"));
+        console.log(e);
         document.querySelector(".nav-button").setAttribute("data-active", "false");
         document.querySelector(".menu").setAttribute("data-menu-active", "false");
         document.querySelector(".body-on-menu").setAttribute("data-menu-active", "false");
