@@ -16,6 +16,7 @@ p{
     justify-content: space-between;
     position: relative;
     align-items: center;
+    transform: translateZ(80px);
     z-index: 1;
 }
 
@@ -37,7 +38,6 @@ p{
     gap: 2em;
     flex-wrap: wrap;
     justify-content: space-around;
-    transform: translateZ(110px);
 }
 
 .bottom {
@@ -204,6 +204,7 @@ button{
 }
 
 .nav{
+    /* backface-visibility: hidden; */
     display: flex;
     width: 100%;
     position:sticky;
@@ -212,7 +213,7 @@ button{
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    transform: translateZ(40px);
+    transform: translateZ(120px);
     top:0;
     left: 0;
     background-color: var(--black);
@@ -328,13 +329,15 @@ button{
     opacity: 0.8;
     color:var(--black);
     height: 60%;
-    overflow: hidden;
-    /* transform:translateY(-200%); */
-    z-index: 200;
+    /* overflow: hidden; */
+    transform:translateZ(2000px);
+    z-index: 2000;
     position:absolute;
     display: flex;
     animation: popup 1s ease-in 0s 1 normal forwards;
     flex-direction: column;
+    backface-visibility: hidden;
+
 }
 
 .menu-item{
@@ -368,17 +371,17 @@ button{
 
 @keyframes popup {
     to{
-        transform: translateY(-200%);
+        transform: translateY(-200%) translateZ(300px) ;
     }
 }
 
  
 @keyframes popdown {
     from{
-        transform: translateY(-200%);
+        transform: translateY(-200%) translateZ(300px);
     }
     to{
-        transform: translateY(0%);
+        transform: translateY(0%) translateZ(300px);
     }
 }
 
@@ -388,6 +391,7 @@ button{
     width:100vw;
     height: 100vh;
     transform-style: preserve-3d;
+    background-color: transparent;
     animation: rot 5s ease 1s 1 normal forwards;
 }
 
@@ -395,9 +399,9 @@ button{
     position: absolute;
     inset:0;
     height:fit-content;
-    transition: rotateY 1s, translate 1s;
     transform: rotateY(0.5turn) translateZ(60px);
     transform-style:preserve-3d;
+    backface-visibility: hidden;
     background-color: var(--black);
 }
 .loading-screen{
@@ -408,7 +412,7 @@ button{
     justify-content: center;
     align-items: center;
     background-color:var(--black);
-    /* backface-visibility: hidden; */
+    backface-visibility: hidden;
     position: absolute;
     top:0;
     left:0;
@@ -458,7 +462,8 @@ button{
     position:absolute;
     content: "";
     inset:0;
-    z-index:100;
+    z-index:700;
+    transform: translateZ(700px);
     overflow: hidden;
     padding:var(--fullheight) var(--fullwidth);
     /* background-color: aqua; */
