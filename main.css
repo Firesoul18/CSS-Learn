@@ -394,6 +394,7 @@ button{
 .game{
     position: absolute;
     inset:0;
+    height:fit-content;
     transition: rotateY 1s, translate 1s;
     transform: rotateY(0.5turn) translateZ(60px);
     transform-style:preserve-3d;
