@@ -1,9 +1,8 @@
 let cb = document.getElementsByClassName("round")[0];
 let dark = false;
-// let toggle = window.getComputedStyle(cb,':before');
 cb.addEventListener('click', _ => {
     if (!dark) {
-        document.documentElement.style.setProperty('--left', '58%');
+        document.documentElement.style.setProperty('--left', '60%');
         document.documentElement.style.setProperty('--white', '#000');
         document.documentElement.style.setProperty('--black', '#fff');
         document.documentElement.style.setProperty('--white-shadow', 'rgba(0,0,0,0.4)');
@@ -19,16 +18,12 @@ cb.addEventListener('click', _ => {
     dark = !dark;
 });
 
-// console.log(localStorage.getItem("error")||4);
 
 let obj = JSON.parse(localStorage.getItem("obj")) || {
     "win": 0,
     "lose": 0,
     "draw": 0
 };
-// if(localStorage.getItem("obj")){
-//     obj = ;
-// }
 
 let rock = document.querySelector(".rock")
 let paper = document.querySelector(".paper");
@@ -37,7 +32,10 @@ let wins = document.querySelector(".win");
 let loses = document.querySelector(".lose");
 let draws = document.querySelector(".draw");
 let reset = document.querySelector(".reset");
-
+let nav = document.querySelector(".nav-button");
+let nav_after = document.querySelector(".nav-button::after");
+let nav_before = document.querySelector("nav-button::before");
+let menu = document.querySelector(".menu");
 
 wins.append(obj.win);
 loses.append(obj.lose);
@@ -56,7 +54,7 @@ function getEmoji(emoji) {
 
 function chose(user, comp, result) {
     let d = document.querySelector(".chose");
-    d.innerHTML='';
+    d.innerHTML = '';
     let p1 = document.createElement("p");
     let text = document.createTextNode(`You Chose ${getEmoji(user)}`);
     let p2 = document.createElement("p");
@@ -87,8 +85,6 @@ function check(user, comp) {
 
     }
     localStorage.setItem("obj", JSON.stringify(obj));
-    // console.log(obj);
-    // alert(obj)
     wins.innerHTML = 'Wins: ' + obj.win;
     loses.innerHTML = 'Loses: ' + obj.lose;
     draws.innerHTML = 'Draws: ' + obj.draw;
@@ -118,4 +114,22 @@ paper.addEventListener('click', function () { handle('paper') });
 scissors.addEventListener('click', function () { handle('scissors') });
 reset.addEventListener('click', function () { resetScore() });
 
-window.addEventListener('beforeunload',()=>document.body.getElementsByClassName("chose")[0].style.setProperty("animation", "t 0.4s ease-in 0s 1 normal forwards"));
+window.addEventListener('beforeunload', () => document.body.getElementsByClassName("chose")[0].style.setProperty("animation", "t 0.4s ease-in 0s 1 normal forwards"));
+
+
+let x = () => {
+    let isActive = nav.getAttribute("data-active");
+    console.log(isActive);
+    if (isActive === "false") {
+        isActive = "true"
+    }
+    else {
+        isActive = "false"
+    }
+    nav.setAttribute("data-active", isActive);
+    menu.setAttribute("data-menu-active", isActive);
+}
+
+nav.addEventListener('click', () => {
+    x();
+})
