@@ -1,3 +1,18 @@
+
+document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
+document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
+let vars = JSON.parse(localStorage.getItem("vars")) || {
+    white: '#fff',
+    black: '#000',
+    whiteShadow: 'rgba(256,256,256,0.4)',
+    left: '7%'
+}
+
+document.documentElement.style.setProperty('--left', vars.left);
+document.documentElement.style.setProperty('--white', vars.white);
+document.documentElement.style.setProperty('--black', vars.black);
+document.documentElement.style.setProperty('--white-shadow', vars.whiteShadow);
+
 let cb = document.getElementsByClassName("round")[0];
 let dark = false;
 cb.addEventListener('click', _ => {
@@ -6,7 +21,13 @@ cb.addEventListener('click', _ => {
         document.documentElement.style.setProperty('--white', '#000');
         document.documentElement.style.setProperty('--black', '#fff');
         document.documentElement.style.setProperty('--white-shadow', 'rgba(0,0,0,0.4)');
-        console.log(document.getElementsByClassName('round::after'));
+
+        vars = {
+            white: '#000',
+            black: '#fff',
+            whiteShadow: 'rgba(0,0,0,0.4)',
+            left: '60%'
+        }
 
     }
     else {
@@ -14,7 +35,14 @@ cb.addEventListener('click', _ => {
         document.documentElement.style.setProperty('--black', '#000');
         document.documentElement.style.setProperty('--white-shadow', 'rgba(256,256,256,0.4)');
         document.documentElement.style.setProperty('--left', '7%');
+        vars = {
+            white: '#fff',
+            black: '#000',
+            whiteShadow: 'rgba(256,256,256,0.4)',
+            left: '7%'
+        }
     }
+    localStorage.setItem("vars", JSON.stringify(vars));
     dark = !dark;
 });
 
@@ -36,6 +64,7 @@ let nav = document.querySelector(".nav-button");
 let nav_after = document.querySelector(".nav-button::after");
 let nav_before = document.querySelector("nav-button::before");
 let menu = document.querySelector(".menu");
+let outbody = document.querySelector(".body-on-menu");
 
 wins.append(obj.win);
 loses.append(obj.lose);
@@ -88,6 +117,11 @@ function check(user, comp) {
     wins.innerHTML = 'Wins: ' + obj.win;
     loses.innerHTML = 'Loses: ' + obj.lose;
     draws.innerHTML = 'Draws: ' + obj.draw;
+    window.scrollTo({
+        top: window.innerHeight,
+        left: 0,
+        behavior: "smooth",
+    });
 }
 
 function handle(str) {
@@ -128,8 +162,26 @@ let x = () => {
     }
     nav.setAttribute("data-active", isActive);
     menu.setAttribute("data-menu-active", isActive);
+    outbody.setAttribute("data-menu-active", isActive);
+
+
+    console.log(document.documentElement.querySelector(".menu").style.getPropertyValue("--fullwidth"));
+    document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
+    document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
 }
 
 nav.addEventListener('click', () => {
     x();
 })
+
+
+outbody.addEventListener('click', (e) => {
+    let v = document.getElementsByClassName("menu")[0];
+    if (document.querySelector(".nav-button").getAttribute("data-active") == "true" && (e.clientY<v.offsetTop||e.clientX < v.offsetLeft||e.clientX>(v.offsetLeft+v.offsetWidth)||e.clientY>(v.offsetTop+v.offsetHeight))) {
+
+        console.log(e.clientY+" "+(v.offsetHeight+v.offsetTop));
+        document.querySelector(".nav-button").setAttribute("data-active", "false");
+        document.querySelector(".menu").setAttribute("data-menu-active", "false");
+        document.querySelector(".body-on-menu").setAttribute("data-menu-active", "false");
+    }
+});
