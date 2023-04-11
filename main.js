@@ -1,13 +1,25 @@
 document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
 document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
+let bgp = document.querySelector(".round");
+
 let a = new Audio("drop.mp3");
 let vars = JSON.parse(localStorage.getItem("vars")) || {
     bgc: '#FFDE53',
-    fc: '#000',
+    fc: '#53a1b3',
     shadow: 'rgba(0,0,0,0.4)',
     left: '7%',
-    light:true
+    light: true
 }
+let light = vars.light;
+if (light) {
+    bgp.style.setProperty("background-image", "url(\'light.jpg\')")
+    bgp.style.setProperty("background-position", "right");
+}
+else {
+    bgp.style.setProperty("background-image", "url(\'dark.jpg\')");
+    bgp.style.setProperty("background-position", "left top");
+}
+
 
 document.documentElement.style.setProperty('--left', vars.left);
 document.documentElement.style.setProperty('--fc', vars.fc);
@@ -16,22 +28,26 @@ document.documentElement.style.setProperty('--shadow', vars.shadow);
 
 let cb = document.getElementsByClassName("round")[0];
 cb.addEventListener('click', () => {
-let light = vars.light;
+    let light=vars.light;
     if (!light) {
+        bgp.style.setProperty("background-image","url(\'light.jpg\')");
+        bgp.style.setProperty("background-position", "right");
         document.documentElement.style.setProperty('--left', '7%');
         document.documentElement.style.setProperty('--bgc', '#FFDE53');
-        document.documentElement.style.setProperty('--fc', '#000');
+        document.documentElement.style.setProperty('--fc', '#53a1b3');
         document.documentElement.style.setProperty('--shadow', 'rgba(0,0,0,0.4)');
 
         vars = {
             bgc: '#FFDE53',
-            fc: '#000',
+            fc: '#53a1b3',
             shadow: 'rgba(0,0,0,0.4)',
             left: '7%',
-            light:true
+            light: true
         }
     }
     else {
+        bgp.style.setProperty("background-image","url(\'dark.jpg\')");
+        bgp.style.setProperty("background-position", "left top");
         document.documentElement.style.setProperty('--bgc', '#141e24');
         document.documentElement.style.setProperty('--fc', '#53a1b3');
         document.documentElement.style.setProperty('--shadow', 'rgba(83,161,169,0.4)');
@@ -41,7 +57,7 @@ let light = vars.light;
             fc: '#53a1b3',
             shadow: 'rgba(83,161,169,0.4)',
             left: '60%',
-            light:false
+            light: false
         }
     }
     localStorage.setItem("vars", JSON.stringify(vars));
@@ -143,6 +159,11 @@ function resetScore() {
     draws.innerHTML = 'Draws: ' + obj.draw;
     localStorage.setItem("obj", JSON.stringify(obj));
     document.body.getElementsByClassName("chose")[0].style.setProperty("animation", "t 0.4s ease-in 0s 1 normal forwards");
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
 }
 
 rock.addEventListener('click', function () { handle('rock') });

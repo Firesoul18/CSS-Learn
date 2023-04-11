@@ -6,7 +6,7 @@ body *{
 
 :root {
     --bgc: #FFDE53;
-    --fc: black;
+    --fc: #53a1b3;
     --shadow: rgba(0, 0, 0, 0.4);
     --opt-shadow:rgba(83,161,179,0.1);
 
@@ -58,12 +58,27 @@ body {
     border-radius: 3px;
     -webkit-tap-highlight-color: transparent;
     box-shadow: 0px 1px 2px var(--shadow), 0px -1px 2px var(--shadow);
-    padding: 0.4em 0.6em;
+    padding: 0.4rem 0.6rem;
+    transition: background-color 0.3s, color 0.5s;
+}
+
+.reset:hover{
+    background-color: #F15481;
+    color:var(--bgc);
+    /* padding: 0.5rem 0.7rem; */
+
+}
+
+.reset:active{
+    box-shadow: none;
 }
 
 
 .logo{
-    width:5em;
+    width:3em;
+    height:3em;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nav-button{
@@ -128,18 +143,22 @@ body {
 }
 
 .round {
-    width: 64px;
-    height: 1.3rem;
+    cursor: pointer;
+    width: 3rem;
+    height: 1.2rem;
     border: solid 1px var(--fc);
-    background: var(--bgc);
     border-radius: 13px;
+    background-size: cover;
+    background-repeat:no-repeat ;
+    background-color: var(--bgc);
+    transition: background-color 0.5s;
     position: relative;
     border: none;
     box-shadow: 0px 1px 2px var(--shadow), 0px -1px 2px var(--shadow);
 }
 
 .round::after {
-    transition: left 0.3s ease-out;
+    transition: left 0.3s ease-out, background-color 0.5s;
     content: "";
     position: absolute;
     top: var(--top);
@@ -149,6 +168,13 @@ body {
     box-shadow: 0px 1px 2px var(--shadow), 0px -1px 2px var(--shadow);
     border-radius: 50%;
     background-color: rgba(241, 84, 129,0.89);
+}
+
+.round:hover{
+    background-color: #F15481;
+}
+.round:hover::after{
+    background-color: var(--bgc);
 }
 
 .middle {
@@ -196,7 +222,7 @@ body {
 
 .box::before {
     content: "";
-    background-color: var(--fc);
+    background-color: #000;
     top: -2%;
     left: -2%;
     width: 104%;
@@ -211,7 +237,7 @@ body {
 
 @media screen and (max-width:768px) {
     .box {
-        width: 90%;
+        width: 80%;
     }
 }
 
