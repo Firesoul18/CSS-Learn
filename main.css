@@ -2,6 +2,7 @@
 Style For Whole Page*/
 body *{
     -webkit-tap-highlight-color: transparent;
+    transition: background-image 1s;
 }
 
 :root {
@@ -52,11 +53,14 @@ body {
 }
 
 .reset{
+    position: relative;
     color:#F15481;
     background-color: var(--bgc);
     border:none;
     border-radius: 3px;
     -webkit-tap-highlight-color: transparent;
+    background-repeat: no-repeat;
+    background-size:cover;
     box-shadow: 0px 1px 2px var(--shadow), 0px -1px 2px var(--shadow);
     padding: 0.4rem 0.6rem;
     transition: background-color 0.3s, color 0.5s;
@@ -64,9 +68,14 @@ body {
 
 .reset:hover{
     background-color: #F15481;
-    color:var(--bgc);
+    color:transparent;
+    background-image: url('reset.gif');
     /* padding: 0.5rem 0.7rem; */
 
+}
+
+.reset:hover::before{
+    display: inline;
 }
 
 .reset:active{
@@ -210,11 +219,12 @@ body {
 
 .box {
     display: flex;
-    margin:10vh auto 5vh auto;
+    margin:0 auto 5vh auto;
     flex-direction: column;
     width: min(60%, 60vh);
     justify-content: space-between;
     position: relative;
+    /* backface-visibility: hidden; */
     align-items: center;
     transform: translateZ(80px);
     z-index: 1;
@@ -234,20 +244,47 @@ body {
 }
 
 
+.deadpool{
+    display: flex;
+    margin: auto;
+    width:min(60%,60vh);
+}
+
+.deadpool>img{
+    width:100%;
+    margin-bottom: -12%;
+
+}
+
+
 
 @media screen and (max-width:768px) {
     .box {
         width: 80%;
     }
+    .deadpool{
+        width: 50%;
+    }
 }
 
 .chose {
+    position: relative;
     box-shadow: 0px 10px 7px var(--shadow);
     background: var(--bgc);
     color: var(--fc);
     width: min(60%, 60vh);
     margin:auto;
     transition: all 0.4s;
+}
+
+.chose::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('spiderman-hanging.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .option{
@@ -261,7 +298,7 @@ body {
 .option::before{
     content: "";
     position: absolute;
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     inset:-20%;
     border-radius:50% ;
     overflow: hidden;
@@ -330,6 +367,8 @@ body {
     opacity: 0.8;
     color:var(--bgc);
     height: 60%;
+    background-image: url('thor.gif');
+    background-size: cover;
     /* overflow: hidden; */
     transform:translateZ(2000px);
     z-index: 2000;
@@ -346,14 +385,14 @@ body {
     height: 6vh;
     padding-left: 17px;
     border: ridge;
-    border-width: 0 0 1px 0;
+    border-width: 1px 0 1px 0;
     border-color: var(--bgc);
     transition: all 0.3s;
     position:relative;
     overflow: hidden;
     cursor: pointer;
     font-size: 6vh;
-    color:#F15481;
+    color:black;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -406,18 +445,75 @@ body {
     height: 100vh;
     transform-style: preserve-3d;
     background-color: var(--bgc);
-    animation: rot 3s ease 1s 1 normal forwards;
+    animation: rot 3s ease-in 1s 1 normal forwards;
+}
+
+/* .direction{
+    background-color: var(--bgc);
+    width: 600px;
+    height: 100%;
+    background-image: url('iron-man.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotateY(-0.25turn) translateZ(300px);
+    backface-visibility: hidden;
+    box-shadow: inset 0px 1px 10px var(--shadow), inset 0px -1px 10px var(--shadow);
+    animation: fly 0.7s ease-in 0s infinite alternate forwards;
+} */
+
+@keyframes fly {
+    0%{
+        background-position: right;
+    }
+    50%{
+        background-position: center;
+    }
+    100%{
+        background-position: left;
+    }
+    
 }
 
 .game{
     position: absolute;
     inset:0;
     height:fit-content;
-    transform: rotateY(0.5turn) translateZ(60px);
+    transform: rotateY(0.5turn) translateZ(0px);
     transform-style:preserve-3d;
     backface-visibility: hidden;
     background-color: var(--bgc);
+    background-size: contain;
+    background-position: left;
 }
+
+.game::before{
+    content: "";
+    position: fixed;
+    background-image: url('strange.gif');
+    top:0;
+    left:0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width:20%;
+    background-color: var(--bgc);
+}
+
+.game::after{
+    content: "";
+    position: fixed;
+    background-image: url('strange.gif');
+    top:0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width:20%;
+    background-color: var(--bgc);
+}
+
 .loading-screen{
     width: 100%;
     height: 100%;
@@ -430,40 +526,54 @@ body {
     position: absolute;
     top:0;
     left:0;
-    z-index: 22222;
-    transform: translateZ(70px);
+    /* background-image: url('rps.png'); */
+    /* background-size: contain; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* z-index: 22222; */
+    transform: translateZ(0px);
+    box-shadow: inset 0px 1px 10px var(--shadow), inset 0px -1px 10px var(--shadow);
 }
 
 .loading-title{
     transform-style: preserve-3d;
     font-size: 8vw;
     position: relative;
+    color:var(--fc);
     padding: 19vh 2vw;
     /* transition: transform 0.2s; */
     transform: translateZ(140px);
     /* backface-visibility: hidden; */
+    /* text-shadow: -5px 5px 5px black; */
+
 }
 
-.loading-title::before{
+ .loading-title::before{
     content: "";
     /* backface-visibility: hidden; */
     position: absolute;
     inset: 0;
     border:solid;
+    background-image: url('joker.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     transform: translateZ(-50px);
     border-color:#F15481;
-}
+} 
 
-.loading-title>span:nth-child(1){
-    color:var(--fc)
-}
-
-.loading-screen span:nth-child(2){
-    color:var(--fc)
-}
-
-.loading-screen span:nth-child(3){
-    color:var(--fc)
+.loading-screen-inner{
+    position: relative;
+    position: absolute;
+    content: "";
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    background-image: url('batman-and-joker.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
 }
 
 

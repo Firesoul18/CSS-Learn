@@ -1,8 +1,21 @@
 document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
 document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
 let bgp = document.querySelector(".round");
+let rock = document.querySelector(".rock")
+let paper = document.querySelector(".paper");
+let scissors = document.querySelector(".scissors");
+let wins = document.querySelector(".win");
+let loses = document.querySelector(".lose");
+let draws = document.querySelector(".draw");
+let reset = document.querySelector(".reset");
+let nav = document.querySelector(".nav-button");
+let nav_after = document.querySelector(".nav-button::after");
+let nav_before = document.querySelector("nav-button::before");
+let menu = document.querySelector(".menu");
+let outbody = document.querySelector(".body-on-menu");
 
 let a = new Audio("drop.mp3");
+let g = new Audio("I Am Groot.mp3");
 let vars = JSON.parse(localStorage.getItem("vars")) || {
     bgc: '#FFDE53',
     fc: '#53a1b3',
@@ -14,6 +27,7 @@ let light = vars.light;
 if (light) {
     bgp.style.setProperty("background-image", "url(\'light.jpg\')")
     bgp.style.setProperty("background-position", "right");
+
 }
 else {
     bgp.style.setProperty("background-image", "url(\'dark.jpg\')");
@@ -70,18 +84,6 @@ let obj = JSON.parse(localStorage.getItem("obj")) || {
     "draw": 0
 };
 
-let rock = document.querySelector(".rock")
-let paper = document.querySelector(".paper");
-let scissors = document.querySelector(".scissors");
-let wins = document.querySelector(".win");
-let loses = document.querySelector(".lose");
-let draws = document.querySelector(".draw");
-let reset = document.querySelector(".reset");
-let nav = document.querySelector(".nav-button");
-let nav_after = document.querySelector(".nav-button::after");
-let nav_before = document.querySelector("nav-button::before");
-let menu = document.querySelector(".menu");
-let outbody = document.querySelector(".body-on-menu");
 
 wins.append(obj.win);
 loses.append(obj.lose);
@@ -144,6 +146,7 @@ function check(user, comp) {
 
 function handle(str) {
     navigator.vibrate(100);
+    g.play();
     let x = Math.random();
     check(str, x < 0.33 ? "rock" : (x < 0.66 ? "paper" : "scissors"))
 }
@@ -237,5 +240,9 @@ xds.forEach(
         xd.addEventListener('mouseover', () => {
             a.play();
         })
+        xd.addEventListener('mouseout', () => {
+            a.pause();
+            a.currentTime=0;
+        });
     }
 )
