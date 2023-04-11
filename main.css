@@ -251,6 +251,7 @@ body {
     font-weight: 700;
     justify-content: center;
     position: absolute;
+    font-size: 1.6rem;
     inset:-20%;
     backdrop-filter: blur(1px);
     background:rgba(255, 255, 255, 0.1);
@@ -271,6 +272,11 @@ body {
 }
 .option:hover::after{
     animation:rot360 2s ease 0s 1 normal forwards;
+}
+.option:active::after{
+    margin-top:3px;
+    margin-left:3px;
+    text-shadow: none;
 }
 
 @keyframes rot360{
