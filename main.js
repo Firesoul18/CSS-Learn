@@ -1,5 +1,6 @@
 document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
 document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
+let a = new Audio("drop.mp3");
 let vars = JSON.parse(localStorage.getItem("vars")) || {
     bgc: '#FFDE53',
     fc: '#000',
@@ -213,7 +214,6 @@ xds.forEach(
     (xd) => {
         o.observe(xd);
         xd.addEventListener('mouseover', () => {
-            let a = new Audio("drop.mp3");
             a.play();
         })
     }
