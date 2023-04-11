@@ -1,49 +1,49 @@
-
 document.documentElement.querySelector(".menu").style.setProperty("--fullwidth", window.innerWidth);
 document.documentElement.querySelector(".menu").style.setProperty("--fullheight", window.innerHeight);
 let vars = JSON.parse(localStorage.getItem("vars")) || {
-    white: '#fff',
-    black: '#000',
-    whiteShadow: 'rgba(256,256,256,0.4)',
-    left: '7%'
+    bgc: '#FFDE53',
+    fc: '#000',
+    shadow: 'rgba(0,0,0,0.4)',
+    left: '7%',
+    light:true
 }
 
 document.documentElement.style.setProperty('--left', vars.left);
-document.documentElement.style.setProperty('--white', vars.white);
-document.documentElement.style.setProperty('--black', vars.black);
-document.documentElement.style.setProperty('--white-shadow', vars.whiteShadow);
+document.documentElement.style.setProperty('--fc', vars.fc);
+document.documentElement.style.setProperty('--bgc', vars.bgc);
+document.documentElement.style.setProperty('--shadow', vars.shadow);
 
 let cb = document.getElementsByClassName("round")[0];
-let dark = false;
-cb.addEventListener('click', _ => {
-    if (!dark) {
-        document.documentElement.style.setProperty('--left', '60%');
-        document.documentElement.style.setProperty('--white', '#000');
-        document.documentElement.style.setProperty('--black', '#fff');
-        document.documentElement.style.setProperty('--white-shadow', 'rgba(0,0,0,0.4)');
+cb.addEventListener('click', () => {
+let light = vars.light;
+    if (!light) {
+        document.documentElement.style.setProperty('--left', '7%');
+        document.documentElement.style.setProperty('--bgc', '#FFDE53');
+        document.documentElement.style.setProperty('--fc', '#000');
+        document.documentElement.style.setProperty('--shadow', 'rgba(0,0,0,0.4)');
 
         vars = {
-            white: '#000',
-            black: '#fff',
-            whiteShadow: 'rgba(0,0,0,0.4)',
-            left: '60%'
+            bgc: '#FFDE53',
+            fc: '#000',
+            shadow: 'rgba(0,0,0,0.4)',
+            left: '7%',
+            light:true
         }
-
     }
     else {
-        document.documentElement.style.setProperty('--white', '#fff');
-        document.documentElement.style.setProperty('--black', '#000');
-        document.documentElement.style.setProperty('--white-shadow', 'rgba(256,256,256,0.4)');
-        document.documentElement.style.setProperty('--left', '7%');
+        document.documentElement.style.setProperty('--bgc', '#141e24');
+        document.documentElement.style.setProperty('--fc', '#53a1b3');
+        document.documentElement.style.setProperty('--shadow', 'rgba(83,161,169,0.4)');
+        document.documentElement.style.setProperty('--left', '60%');
         vars = {
-            white: '#fff',
-            black: '#000',
-            whiteShadow: 'rgba(256,256,256,0.4)',
-            left: '7%'
+            bgc: '#141e24',
+            fc: '#53a1b3',
+            shadow: 'rgba(83,161,169,0.4)',
+            left: '60%',
+            light:false
         }
     }
     localStorage.setItem("vars", JSON.stringify(vars));
-    dark = !dark;
 });
 
 
@@ -117,6 +117,7 @@ function check(user, comp) {
     wins.innerHTML = 'Wins: ' + obj.win;
     loses.innerHTML = 'Loses: ' + obj.lose;
     draws.innerHTML = 'Draws: ' + obj.draw;
+    wins.classList.add("pre-animation");
     window.scrollTo({
         top: window.innerHeight,
         left: 0,
@@ -125,7 +126,7 @@ function check(user, comp) {
 }
 
 function handle(str) {
-    navigator.vibrate(150);
+    navigator.vibrate(100);
     let x = Math.random();
     check(str, x < 0.33 ? "rock" : (x < 0.66 ? "paper" : "scissors"))
 }
@@ -177,7 +178,7 @@ nav.addEventListener('click', () => {
 
 outbody.addEventListener('click', (e) => {
     let v = document.getElementsByClassName("menu")[0];
-    if (document.querySelector(".nav-button").getAttribute("data-active") == "true" && (e.pageY<v.offsetTop||e.pageX< v.offsetLeft||e.pageX>(v.offsetLeft+v.offsetWidth)||e.pageY>(v.offsetTop+v.offsetHeight))) {
+    if (document.querySelector(".nav-button").getAttribute("data-active") == "true" && (e.pageY < v.offsetTop || e.pageX < v.offsetLeft || e.pageX > (v.offsetLeft + v.offsetWidth) || e.pageY > (v.offsetTop + v.offsetHeight))) {
 
         console.log(document.getElementsByClassName("menu"));
         console.log(e);
@@ -186,3 +187,34 @@ outbody.addEventListener('click', (e) => {
         document.querySelector(".body-on-menu").setAttribute("data-menu-active", "false");
     }
 });
+
+let options = {
+    root: null,
+    rootMargin: "30%",
+    threshold: 0.7
+}
+
+let o = new IntersectionObserver((e, o) => {
+    e.forEach(
+        (entry) => {
+            console.log(entry);
+            if (entry.isIntersecting) {
+                entry.target.classList.toggle('flipping');
+                console.log(entry);
+            }
+            else {
+                entry.target.classList.toggle('flipping');
+            }
+        }
+    )
+}, options);
+let xds = document.querySelectorAll(".menu-item");
+xds.forEach(
+    (xd) => {
+        o.observe(xd);
+        xd.addEventListener('mouseover', () => {
+            let a = new Audio("drop.mp3");
+            a.play();
+        })
+    }
+)
