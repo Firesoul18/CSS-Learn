@@ -9,9 +9,29 @@
     <link rel="icon" href="Images/icon.png">
 </head>
 <body>
-    
-
-
+    <header class="header">
+    <nav class="nav">
+        <ul style="list-style:none;" class="nav-bar">
+            <li>
+            <a href="index.html"><img src="Images/icon.png" class="logo"></a>
+        </li>
+            <li class="city-search">
+                <img src="Images/search.svg" class="lens">
+                <input type="text" name="search" placeholder="Enter City" class="city-search-bar" required minlength="2" autocomplete="off">
+                <ul class="auto-search">
+                </ul>
+            </li>
+            <li>
+                <label for="mode" class="mode-change">💡</label>
+                <input type="checkbox" class="mode" value="mode">
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <div class="searched-city-weather">
+    </div>
+</main>
     <script src="logic.js"></script>
 </body>
 </html>
