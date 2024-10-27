@@ -1,0 +1,47 @@
+.slider{
+  position:relative;
+  width:300px;
+  height:300px;
+  margin:auto;
+  overflow: hidden;
+}
+
+.slider>img{
+  position:absolute;
+  width:inherit;
+  height:inherit;
+  top:0;
+  left:0;
+  /* transition: all 0.4s; */
+  object-fit: cover;
+}
+
+.but{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:transparent;
+  outline:none;
+  border:none;
+  color:transparent;
+  cursor:pointer;
+}
+
+.slider:hover > .but{
+  opacity:0.5;
+  color:gold;
+}
+
+.but:hover{
+  opacity:1;
+  background:black;
+  color:white !important;
+}
+
+
+.prev{
+  left:0;
+}
+.next{
+  right:0;
+}
